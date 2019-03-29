@@ -1,0 +1,65 @@
+<form [formGroup]="employeeform" (ngSubmit)="onSubmit(employeeform)">
+    <div class="form-group ; design1" >
+      <div class="design2">
+        Name 
+      </div>
+      <input  class="form-control" formControlName="name" placeholder="Enter your Fullname" style="height : 25px " required>
+    </div>
+    <div *ngIf="values.name.invalid && (values.name.dirty || values.name.touched)" class="color">
+    <p *ngIf= "values.name.hasError('required')">
+      User name is Required Field
+    </p>
+  </div>
+    <div class="form-group ; design1">
+      <div class="design2">
+        User-Id
+      </div>
+      <input type="number" class="form-control" formControlName="UserId"  placeholder="Enter your valid User-Id" style="height : 25px" required>
+    </div>
+    <div *ngIf="values.UserId.invalid && (values.UserId.dirty || values.UserId.touched)" class="color">
+        <p *ngIf= "values.UserId.hasError('required')">
+          Valid User Id is Required Field
+        </p>
+    </div>
+    <div class="form-group ; design1">
+      <div class="design2">
+        Password 
+      </div>
+      <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
+        <input type="password" class="form-control" formControlName="Password" placeholder="Enter your Password" style="height : 25px " required>
+      </show-hide-password>
+    </div>
+    <div *ngIf="values.Password.invalid && (values.Password.dirty || values.Password.touched)" class="color">
+        <p *ngIf= "values.Password.hasError('required')">
+          Password is Required Field
+        </p>
+    </div>
+
+    <div class="form-group ; design1">
+      <div class="design2">
+        Confirm Password 
+      </div>
+      <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
+        <input type="password" class="form-control" formControlName="ConfirmPassword"  placeholder="Confirm your Password" style="height : 25px " required>
+    </show-hide-password>
+    </div>
+    <div *ngIf="values.ConfirmPassword.invalid && (values.ConfirmPassword.dirty || values.ConfirmPassword.touched)" class="color">
+        <p *ngIf= "values.ConfirmPassword.hasError('required')">
+          Confirm Password is Required Field
+        </p>
+        <div class="error" *ngIf="employeeform.get('ConfirmPassword').errors && employeeform.get('ConfirmPassword').errors.ConfirmPassword">
+            Passsword and ConfirmPassword didn't match.
+           </div>
+    </div>
+    <div class="form-group design">
+      <button  class="btn btn-default ; design" type="submit" [disabled]="employeeform.invalid">
+        Submit
+      </button>
+      <button class="btn btn-default design" type="button" (click)="resetForm(employeeform)">
+          <a routerLink="/Home" routerLinkActive="active">
+            Back
+          </a>
+      </button>
+    </div>
+  </form>
+  
