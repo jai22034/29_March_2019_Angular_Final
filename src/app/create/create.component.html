@@ -1,0 +1,35 @@
+    <div>
+      <h5>Filter Expenses</h5>
+      <hr>
+        <form>
+            <div class="form-group">
+                <label for="Date">From:</label>
+                <input type="date" class="form-control" formControlName="Merchant" >
+              </div>
+          <div class="form-group">
+            <label for="Date">To:</label>
+            <input type="date" class="form-control" formControlName="Date" >
+          </div>
+              <div class="form-group">
+                  <label for="min">Min:</label>
+                  <input type="number" class="form-control">
+               </div> 
+               <div class="form-group">
+                  <label for="min">Max:</label>
+                  <input type="number" class="form-control">
+               </div>
+               <div class="form-group">
+                  <label for="Merchant">Merchant</label>
+                  <input type="text" class="form-control" formControlName="Merchant" >
+                </div> 
+                <div class="radio">
+                    <label><input type="checkbox" name="optradio" checked>New</label>
+                  </div>
+                  <div class="radio">
+                    <label><input type="checkbox" name="optradio">In Progres</label>
+                  </div>
+                  <div class="radio">
+                    <label><input type="checkbox" name="optradio" >Reimbursed</label>
+                  </div>
+        </form>
+      </div>
