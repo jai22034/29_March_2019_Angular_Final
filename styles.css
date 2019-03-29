@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+nav a.active{
+    color:red ;
+}
+
+.design{
+    padding: 10px;
+    margin-right: 10px ;
+}
+
+h1{
+    font-style: oblique ;
+    font-size: 60px ;
+    background-color:cyan;
+    margin-top: 0;
+}
+
+.design1{
+    padding: 10px;
+}
+.design2{
+    font-size: 30px;
+}
+.color{
+    color: red;
+}
+.body{
+    background-color: lightcyan;
+    height: 640px;
+}
+select{
+    overflow: scroll;
+}
