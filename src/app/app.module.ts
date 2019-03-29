@@ -7,6 +7,7 @@ import { TableComponent } from './table/table.component';
 import { HeaderComponent } from './header/header.component';
 import { RightSideBarComponent } from './right-side-bar/right-side-bar.component';
 import { LoginComponent } from './login/login.component';
+import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { LoginComponent } from './login/login.component';
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ShowHidePasswordModule
   ],
   providers: [],
   bootstrap: [AppComponent]
