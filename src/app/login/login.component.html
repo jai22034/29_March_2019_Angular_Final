@@ -3,11 +3,9 @@
     <div class="row">
       <div class="col-lg-10 col-xl-9 mx-auto">
         <div class="card card-signin flex-row my-5">
-          <div class="card-img-left d-none d-md-flex">
-             <!-- Background image for card set in CSS! -->
-          </div>
+         
           <div class="card-body">
-            <h5 class="card-title text-center">LOGIN</h5>
+            <h3 class="card-title text-center" style="font-weight: bold">LOGIN</h3>
             <form class="form-signin" #employeeform="ngForm" (ngSubmit)="onSubmit(employeeform)">
            
 
@@ -26,7 +24,7 @@
               <div class="form-label-group">
               <button class="btn btn-block btn-primary" type="submit">Submit</button>
               </div>
-              <a class="d-block text-center mt-2 small" routerLink="/Signup"  routerLinkActive="active" >Sign Up</a>
+             <h5><a class="d-block text-center mt-2 small" routerLink="/Signup"  routerLinkActive="active" >Create Account</a></h5> 
           
               
             </form>

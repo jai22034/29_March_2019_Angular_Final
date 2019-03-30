@@ -22,4 +22,11 @@ export class ExpenseService {
     console.log(empdata);
     return this.http.post<Expense[]>(this._url, empdata);
   }
+ 
+  deleteEmployee(data)
+  {
+    return this.http.delete(this._url,data);
+  }
+
+
 }

@@ -1,15 +1,31 @@
+<div class= "row" style="background-color:#042643 ; height:70px;">
+    <div class ="col-sm-6">
+    <h3 class="header">Expense Manager</h3>
+    </div>
+    <div class="col-sm-4"></div>
+    <div class="col-sm-1">
+    <button class="btn btn-primary">Info</button>
+    </div>
+    <div class="col-sm-1">
+        <button class = "btn btn-primary" (click)= "Logout()">Logout</button>
+    </div>
+</div>
+
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-3">
       <h5>Filter Expenses</h5>
       <hr>
-      <form >
+      
         <div class="form-group">
 
           <label for="Date">From:</label>
-          <mat-form-field class="filter" floatLabel="never">
-              <mat-label>From</mat-label>
-              <input matInput [formControl]="fromFilter">
+          <mat-form-field class="search-form-field" floatLabel="never">
+              <input matInput [(ngModel)]="fromKey" placeholder="from" autocomplete="off" (keyup)="applyFilter()">
+              <button mat-button matSuffix mat-icon-button aria-label="Clear"*ngIf="fromKey"  (click)="onSearchClear()">
+                <mat-icon>close</mat-icon>
+              </button>
             </mat-form-field>
           </div>
         <div class="form-group">
@@ -18,26 +34,41 @@
         </div>
         <div class="form-group">
           <label for="min">Min:</label>
-          <input type="number" class="form-control">
+          <mat-form-field class="search-form-field" floatLabel="never">
+              <input matInput [(ngModel)]="minKey" placeholder="from" autocomplete="off" (keyup)="applyFilter1()">
+              <button mat-button matSuffix mat-icon-button aria-label="Clear"*ngIf="minKey"  >
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
         </div>
         <div class="form-group">
           <label for="min">Max:</label>
-          <input type="number" class="form-control">
+          <mat-form-field class="search-form-field" floatLabel="never">
+              <input matInput [(ngModel)]="maxKey" placeholder="from" autocomplete="off" (keyup)="applyFilter1()">
+              <button mat-button matSuffix mat-icon-button aria-label="Clear"*ngIf="maxKey"  (click)="onSearchClear1()">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
         </div>
         <div class="form-group">
-          <label for="Merchant">Merchant</label>
-          <input type="text" class="form-control" name="merchant" #merchant="ngModel" [(ngModel)]="employee.merchant">
+          <label>Merchant:</label>
+          <mat-form-field class="search-form-field" floatLabel="never">
+            <input matInput [(ngModel)]="merchantKey" placeholder="merchant" autocomplete="off" (keyup)="applyFilter()">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear"*ngIf="merchantKey"  (click)="onSearchClear()">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
         </div>
-        <div class="radio">
-          <label><input type="checkbox" name="optradio" checked>New</label>
+        <div class="radio" >
+            <mat-checkbox [(ngModel)]="checked" (keyup)="applyFilter()" (click)="onSearchClear()">New</mat-checkbox>
         </div>
-        <div class="radio">
-          <label><input type="checkbox" name="optradio">In Progress</label>
+        <div class="radio" >
+            <mat-checkbox [(ngModel)]="checked" (keyup)="applyFilter()" (click)="onSearchClear()">Reimbursed</mat-checkbox>
         </div>
-        <div class="radio">
-          <label><input type="checkbox" name="optradio">Reimbursed</label>
+        <div class="radio" >
+            <mat-checkbox [(ngModel)]="checked" (keyup)="applyFilter()" (click)="onSearchClear()">In progress</mat-checkbox>
         </div>
-      </form>
+      
 
     </div>
     <div class="col-sm-6">
@@ -99,8 +130,8 @@
           <ng-container matColumnDef="actions">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let row">
-              <button mat-icon-button><mat-icon>launch</mat-icon></button>
-              <button mat-icon-button color="warn"><mat-icon>delete_outline</mat-icon></button>
+              <button mat-icon-button ><mat-icon>launch</mat-icon></button>
+              <button mat-icon-button color="warn" (click)="onDelete(row.$key)"><mat-icon>delete_outline</mat-icon></button>
 
             </mat-cell>
           </ng-container>
@@ -124,5 +155,11 @@
 
       </div>
     </div>
+    <div class="col-sm-3">
+        <h5>To be Reimbursed</h5>
+        <hr>
+
+       <h2>1200</h2>
+      </div>
   </div>
 </div>

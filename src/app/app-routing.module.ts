@@ -7,7 +7,9 @@ import {DataTableComponent} from './data-table/data-table.component';
 const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'Signup',component:EmployeeListComponent},
-  {path:'Signin/:name',component:DataTableComponent}
+  {path:'Signin/:name',component:DataTableComponent},
+  {path :'',component:LoginComponent}
+
 ];
 
 @NgModule({

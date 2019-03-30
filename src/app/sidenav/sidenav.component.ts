@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup,FormBuilder, NgForm} from '@angular/forms';
-import {ExpenseService} from '../expense.service'
+import {FormGroup,FormBuilder, NgForm, Validators} from '@angular/forms';
+import {ExpenseService} from '../expense.service';
+
+import {MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-sidenav',
@@ -9,15 +11,33 @@ import {ExpenseService} from '../expense.service'
 })
 export class SidenavComponent implements OnInit {
 
-  constructor(private expenseservice:ExpenseService ,private builder:FormBuilder ) {
+  constructor(private expenseservice:ExpenseService ,private builder:FormBuilder,private dialog :MatDialogRef<SidenavComponent >) {
     this.form = this.builder.group({
-      merchant:[''],
-      total:[''],
-      status:[''],
-      date:[''],
+      merchant:['',[Validators.required,Validators.minLength(4)]],
+      total:['',[Validators.required]],
+      status:['',Validators.required],
+      date:['',Validators.required],
       comment:['']
     })
 
+}
+
+
+get merchant()
+{
+  return this.form.get('merchant');
+}
+get total()
+{
+  return this.form.get('total');
+}
+get status()
+{
+  return this.form.get('status');
+}
+get date()
+{
+  return this.form.get('date');
 }
 public form:FormGroup;
   
@@ -27,12 +47,24 @@ public form:FormGroup;
    
   }
 
-  Add(form : NgForm)
+  Add()
   {
-    this.expenseservice.setEmployee(form.value).subscribe((res) => {
+    this.expenseservice.setEmployee(this.form.value).subscribe((res) => {
       console.log(res);
     })
+    this.form.reset();
+   
+    this.onClose();
 
   }
+
+  onClose()
+  {
+  this.form.reset();
+  this.dialog.close();
+  }
+  onClear() {
+    this.form.reset();
+    }
 
 }
