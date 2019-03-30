@@ -1,0 +1,44 @@
+<div class="create">
+    <h4 class="modal-title">Add Expense</h4>
+           <form [formGroup]="form" (ngSubmit)="Add()" >
+              <div class="form-group">
+                <label for="Merchant">Merchant</label>
+                <input type="text" class="form-control" formControlName="merchant">
+              </div>
+              <div *ngIf="merchant.invalid && (merchant.dirty || merchant.touched)">
+                <div *ngIf="merchant.errors.required">Name is Required</div>
+                <div *ngIf="merchant.errors.minlength">Must be atleast 4 length</div>
+              </div>
+              <div class="form-group">
+                <label for="Total">Total</label>
+                <input type="number" class="form-control" formControlName="total" >
+              </div>
+              <div *ngIf="total.invalid && (total.dirty || total.touched)">
+                <div *ngIf="total.errors.required">Total is Required</div>
+                
+              </div>
+              <div class="form-group">
+                  <label for="Status">Status:</label>
+                  <input type="text" class="form-control" formControlName="status" >
+                </div>
+                <div *ngIf="status.invalid && (status.dirty || status.touched)">
+                  <div *ngIf="status.errors.required">Name is Required</div>
+                  
+                </div>
+              <div class="form-group">
+                <label for="Date">Date:</label>
+                <input type="date" class="form-control" formControlName="date" >
+              </div>
+              <div *ngIf="date.invalid && (date.dirty || date.touched)">
+                <div *ngIf="date.errors.required">Name is Required</div>
+             
+              </div>
+              <div class="form-group">
+                <label for="comment">Comment:</label>
+                <textarea class="form-control" rows="5" formControlName="comment"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="onClear()">Clear</button>
+            </form>
+</div>
+       

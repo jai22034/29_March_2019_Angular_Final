@@ -1,0 +1,54 @@
+<body>
+    <div class= "row" style="background-color:#042643 ;">
+        <div class ="col-sm-6">
+        <h3 class="header">Expense Manager</h3>
+        </div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-1">
+        <button class="btn btn-primary">Info</button>
+        </div>
+        <div class="col-sm-1">
+            <button class = "btn btn-primary">Logout</button>
+        </div>
+        </div>
+        
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-xl-9 mx-auto">
+        <div class="card card-signin flex-row my-5">
+          <div class="card-img-left d-none d-md-flex">
+             <!-- Background image for card set in CSS! -->
+          </div>
+          <div class="card-body">
+            <h5 class="card-title text-center">Register</h5>
+            <form class="form-signin" #employeeform="ngForm" (ngSubmit)="onSubmit(employeeform)">
+              <div class="form-label-group">
+                <input  type="text " class="form-control" id="inputUserame" name="name" #name="ngModel" [(ngModel)]="employee.name" placeholder="Fullname" required autofocus>
+                <label for="inputUserame">Username</label>
+              </div>
+
+              <div class="form-label-group">
+                <input type="text" class="form-control" id="inputEmail" name="email" #email="ngModel" [(ngModel)]="employee.email" placeholder="email">
+                <label for="inputEmail">Email address</label>
+              </div>
+              
+              <hr>
+
+              <div class="form-label-group">
+                <input type="password" class="form-control" id="inputPassword" name="password" #password="ngModel" [(ngModel)]="employee.password" placeholder="Password">
+                <label for="inputPassword">Password</label>
+              </div>
+              
+              <div class="form-label-group">
+              <button class="btn btn-block btn-primary" type="submit">Submit</button>
+              </div>
+             <a class="d-block text-center mt-2 small" routerLink="/login" routerLinkActive="active" >Sign In</a>
+          
+              
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
