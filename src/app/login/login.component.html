@@ -1,4 +1,38 @@
-<div class="container col-sm-8">
+<div class="bg">
+    <div class="user">
+        <img src="../../assets/face.png" alt="">
+      </div>
+   <div class = "Container cbox ">
+      <form [formGroup]="userForm">
+        <div class ="in">
+            <div class="form-group">
+                <!-- <label for="UserName">UserName:</label> -->
+                <input type="text" class="form-control" id="UserName" formControlName = "UserName" placeholder="Enter UserName" name="UserName">
+              </div>
+              <div class="form-group">
+                <!-- <label for="pwd">Password:</label> -->
+                <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
+                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" formControlName = "pwd" name="pwd">
+                  </show-hide-password>
+              </div>
+              <button type="submit" class="btn btn-success button1">Sign In</button>
+              <!-- <button type="submit" class="btn btn-success button2">Sign Up</button> -->
+        </div>
+        </form>
+   </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container col-sm-8">
     <form [formGroup]="userForm">
       <div class="form-group">
         <label for="UserName">UserName:</label>
@@ -15,3 +49,4 @@
   </div>
 
   
+ -->
