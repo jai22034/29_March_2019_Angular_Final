@@ -59,15 +59,10 @@
             </button>
           </mat-form-field>
         </div>
-        <div class="radio" >
-            <mat-checkbox [(ngModel)]="checked" (keyup)="applyFilter()" (click)="onSearchClear()">New</mat-checkbox>
+        <div class="radio" *ngFor="let items of data" >
+            <mat-checkbox (ngModelChange)="selected_item($event,items)" (keyup)="applyFilter()" (click)="onSearchClear()">{{items}}</mat-checkbox>
         </div>
-        <div class="radio" >
-            <mat-checkbox [(ngModel)]="checked" (keyup)="applyFilter()" (click)="onSearchClear()">Reimbursed</mat-checkbox>
-        </div>
-        <div class="radio" >
-            <mat-checkbox [(ngModel)]="checked" (keyup)="applyFilter()" (click)="onSearchClear()">In progress</mat-checkbox>
-        </div>
+       
       
 
     </div>
@@ -85,9 +80,9 @@
           </div>
 
       <div class="mat-elevation-z8">
-
+          
         <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
-          <!-- Id Column -->
+         
           <ng-container matColumnDef="Date">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Date
 
@@ -130,7 +125,7 @@
           <ng-container matColumnDef="actions">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let row">
-              <button mat-icon-button ><mat-icon>launch</mat-icon></button>
+              <button mat-icon-button (click)="onEdit(row)" ><mat-icon>launch</mat-icon></button>
               <button mat-icon-button color="warn" (click)="onDelete(row.$key)"><mat-icon>delete_outline</mat-icon></button>
 
             </mat-cell>

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 import { HttpClient } from '@angular/common/http';
 import { Employee } from './employee';
@@ -15,6 +16,27 @@ export class EmployeeService {
 
 
   constructor(private http: HttpClient) { }
+
+
+  form: FormGroup = new FormGroup({
+  
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.email),
+    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    
+  });
+
+  initializeFormGroup() {
+    this.form.setValue({
+    
+      name: '',
+      email: '',
+      password: '',
+    });
+  }
+
+
+
   getEmployees(): Observable<Employee[]> {
 
     return this.http.get<Employee[]>(this._url);

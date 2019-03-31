@@ -3,7 +3,7 @@ import {Router,ActivatedRoute} from '@angular/router';
 import {ExpenseService} from '../expense.service';
 import {FormControl} from '@angular/forms';
 import {MatTableDataSource, MatSort, MatDialogConfig} from '@angular/material';
-import {MatDialog} from '@angular/material'
+import {MatDialog,MatDialogModule} from '@angular/material'
 import { DataSource } from '@angular/cdk/table';
 import { SidenavComponent } from '../sidenav/sidenav.component';
 import{AuthService} from '../auth.service';
@@ -23,9 +23,10 @@ export class DataTableComponent implements OnInit {
   merchantKey:string;
   minKey:number;
   maxKey:number;
+  statusKey:string;
   dataSource:MatTableDataSource<any>;  
   displayedColumns = ['Date','Merchant','Total','Status','Comment','actions'];
-
+  @ViewChild(MatSort) sort:MatSort;
 
 fromFilter = new FormControl('');
 toFilter = new FormControl('');
@@ -43,28 +44,39 @@ checked;
   private employee=[];
   private name:string;
 
+  data=["new","in progress","reimbursed"];
+  allitems;
 
-  @ViewChild(MatSort) sort:    MatSort;
+
   ngOnInit() {
-    this.dataSource.sort=this.sort;
     let name1=this.route.snapshot.paramMap.get('name')
     this.name=name1;
+ 
     this.ExpenseService.getEmployees().subscribe((data) => {
       console.log(data);
       Object.keys(data).forEach((key) => {
         this.employee.push(data[key]);
-      
       });
       this.dataSource = new MatTableDataSource(this.employee);
       this.dataSource.sort=this.sort;
       console.log(this.dataSource)
    
-   
+
   
     });
     
  
   } 
+  
+  selected_item(event, value) {
+    this.allitems.push(value);
+    console.log(this.allitems);
+  }
+
+
+
+
+
  Logout()
  {
    this.authService.logout();
@@ -139,8 +151,19 @@ onSearchClear() {
     this.dialog.open(SidenavComponent,dialogConfig);
 
   }
+  onEdit(row)
+  {
+    console.log(row);
+    this.ExpenseService.populateform(row);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "60%";
+    this.dialog.open(SidenavComponent,dialogConfig);
+  }
   onDelete($key){
     if(confirm('Are you sure to delete this record ?')){
+     
     this.ExpenseService.deleteEmployee($key);
     }
 

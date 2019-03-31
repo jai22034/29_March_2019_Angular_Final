@@ -1,6 +1,7 @@
 <div class="create">
     <h4 class="modal-title">Add Expense</h4>
-           <form [formGroup]="form" (ngSubmit)="Add()" >
+           <form [formGroup]="form" (ngSubmit)="Add(form)" >
+             <input type="hidden" formControlName="$key">
               <div class="form-group">
                 <label for="Merchant">Merchant</label>
                 <input type="text" class="form-control" formControlName="merchant">

@@ -11,51 +11,48 @@ import {MatDialogRef} from '@angular/material';
 })
 export class SidenavComponent implements OnInit {
 
-  constructor(private expenseservice:ExpenseService ,private builder:FormBuilder,private dialog :MatDialogRef<SidenavComponent >) {
-    this.form = this.builder.group({
-      merchant:['',[Validators.required,Validators.minLength(4)]],
-      total:['',[Validators.required]],
-      status:['',Validators.required],
-      date:['',Validators.required],
-      comment:['']
-    })
+  constructor(private service:ExpenseService ,private dialog :MatDialogRef<SidenavComponent >) {
+    
 
-}
-
-
-get merchant()
-{
-  return this.form.get('merchant');
-}
-get total()
-{
-  return this.form.get('total');
-}
-get status()
-{
-  return this.form.get('status');
-}
-get date()
-{
-  return this.form.get('date');
-}
-public form:FormGroup;
-  
-
-  ngOnInit() {
-   
-   
   }
+  
+form : FormGroup;
 
-  Add()
+ngOnInit() {
+this.form= this.service.form;
+   }
+
+  Add(form : NgForm)
   {
-    this.expenseservice.setEmployee(this.form.value).subscribe((res) => {
+    if (!this.service.form.get('$key').value)
+    {
+    this.service.setEmployee(form.value).subscribe((res) => {
       console.log(res);
-    })
-    this.form.reset();
-   
+   })
+  }
+  else
+  {
+    this.service.updateEmployee(form.value);
+  }
+    form.reset();
     this.onClose();
 
+  }
+  get merchant()
+  {
+    return this.form.get('merchant');
+  }
+  get status()
+  {
+    return this.form.get('status');
+  }
+  get total()
+  {
+    return this.form.get('total');
+  }
+  get date()
+  {
+    return this.form.get('date');
   }
 
   onClose()

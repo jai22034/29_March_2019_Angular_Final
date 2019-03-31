@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../employee.service';
 import { NgForm, FormGroup } from '@angular/forms';
 import {AuthService} from '../auth.service';
+import {ExpenseService} from '../expense.service';
+import {Employee} from '../employee'
 
 import {Router} from '@angular/router';
 @Component({
@@ -12,19 +14,22 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   public employee = [];
+  
+employeeform:FormGroup;
 
-
-  constructor(private employeeservice: EmployeeService,private router: Router,public authService: AuthService) 
+  constructor(private expense:ExpenseService,private employeeservice: EmployeeService,private router: Router,public authService: AuthService) 
   {}
 
-  onSubmit(loginform: NgForm) {
+  onSubmit(employeeform: NgForm) {
+
+    
     this.employee.forEach((key) => {
-     if(loginform.value.email===key.email && loginform.value.password===key.password)
+     if(employeeform.value.email===key.email && employeeform.value.password===key.password)
      {
 
        console.log("Login Success");
        localStorage.setItem('isLoggedIn',"true");
-       localStorage.setItem('token',loginform.value.email);
+       localStorage.setItem('token',employeeform.value.email);
        this.router.navigate(['/Signin',key.name] );
 
      }
@@ -34,7 +39,9 @@ export class LoginComponent implements OnInit {
      
   }
 
+
   ngOnInit() {
+  this.employeeform=this.employeeservice.form;
     if(localStorage.getItem('isLoggedIn')=="true"){
       this.router.navigate(['/Signin'] );
       console.log(localStorage.getItem('isLoggedIn'));
@@ -43,8 +50,21 @@ export class LoginComponent implements OnInit {
       Object.keys(data).forEach((key) => {
         this.employee.push(data[key])
       });
+   
     });
+   
+    
      
+  }
+
+  get email()
+  {
+    return this.employeeform.get('email');
+  }
+
+  get password()
+  {
+    return this.employeeform.get('password');
   }
  logout(): void{
 

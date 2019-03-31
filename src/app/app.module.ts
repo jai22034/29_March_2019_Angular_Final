@@ -31,7 +31,8 @@ import { from } from 'rxjs';
     FooterComponent,
     SidenavComponent,
     LoginComponent,
-    DataTableComponent
+    DataTableComponent,
+   
   ],
   imports: [
     BrowserModule,
@@ -48,7 +49,7 @@ import { from } from 'rxjs';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatIconModule,
-    MatDialogModule,
+    MatDialogModule
 ],
   providers: [EmployeeService,ExpenseService],
   bootstrap: [AppComponent],
